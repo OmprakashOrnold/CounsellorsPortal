@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: CounsellorsPortal
+  server:
+    port: 9090
+  datasource:
+    url: jdbc:mysql://localhost:3306/counsellors_portal?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
+    username: root
+    password: root
+  jpa:
+    hibernate:
+      ddl-auto: update
+      show-sql: true
+  main:
+    banner-mode: off
