@@ -4,12 +4,14 @@ spring:
   server:
     port: 9090
   datasource:
-    url: jdbc:mysql://localhost:3306/counsellors_portal?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=UTC
-    username: root
-    password: root
+    url: jdbc:h2:mem:counsellors_portal;DB_CLOSE_DELAY=-1
+    username: sa
+    password:
+    driverClassName: org.h2.Driver
   jpa:
     hibernate:
       ddl-auto: update
       show-sql: true
+      dialect: org.hibernate.dialect.H2Dialect
   main:
     banner-mode: off

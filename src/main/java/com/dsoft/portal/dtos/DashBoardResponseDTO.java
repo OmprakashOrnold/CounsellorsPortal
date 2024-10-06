@@ -10,8 +10,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class DashBoardResponseDTO {
-    private Long totalEnquires;
-    private Long openEnquires;
-    private Long enrolledEnquires;
-    private Long lostEnquires;
+    private Integer totalEnquires;
+    private Integer openEnquires;
+    private Integer enrolledEnquires;
+    private Integer lostEnquires;
 }

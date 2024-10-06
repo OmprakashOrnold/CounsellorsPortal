@@ -10,8 +10,8 @@ public interface EnquiriesService {
 
     void  addEnquire(EnquireDTO enquireDTO);
 
-    List<Enquiries> getAllEnquiriesByCounsellorId(Long counsellorId);
+    List<EnquireDTO> getAllEnquiriesByCounsellorId(Long counsellorId);
 
-    List<Enquiries> getAllEnquiriesByFilter(EnquireDTO enquireDTO,Long counsellorId);
+    List<EnquireDTO> getAllEnquiriesByFilter(EnquireDTO enquireDTO,Long counsellorId);
 
 }
