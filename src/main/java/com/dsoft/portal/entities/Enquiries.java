@@ -25,13 +25,16 @@ public class Enquiries  implements Serializable {
     private String studentPhoto;
     private String courseName;
     private String courseMode;
-    private Boolean enqStatus;
+    private String enqStatus;
     @CreationTimestamp
     @Column(updatable = false)
     private LocalDate createdDate;
     @UpdateTimestamp
     @Column(updatable = true)
     private LocalDate updatedDate;
+    @ManyToOne
+    @JoinColumn(name = "counsellorId", nullable = false)
+    private Counsellor counsellor;
 
 
 }

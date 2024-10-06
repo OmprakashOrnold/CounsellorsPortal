@@ -14,5 +14,5 @@ public class EnquireDTO {
     private String studentPhoto;
     private String courseName;
     private String courseMode;
-    private Boolean enqStatus;
+    private String enqStatus;
 }

@@ -1,13 +1,16 @@
 package com.dsoft.portal.service;
 
 import com.dsoft.portal.dtos.CounsellorDTO;
+import com.dsoft.portal.dtos.DashBoardResponseDTO;
+import com.dsoft.portal.dtos.EnquireDTO;
 
 public interface CounsellorsService {
 
-     boolean register(CounsellorDTO counsellorsDTO);
+     Boolean registerCounsellor(CounsellorDTO counsellorsDTO) throws Exception;
 
-    // CounsellorDTO login(CounsellorDTO counsellorsDTO);
+     Boolean loginCounsellor(CounsellorDTO counsellorsDTO) throws Exception;
 
+     DashBoardResponseDTO getDashboardDetails(Long counsellorId);
 
 
 
