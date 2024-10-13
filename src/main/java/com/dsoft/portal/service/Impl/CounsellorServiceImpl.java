@@ -56,23 +56,22 @@ public class CounsellorServiceImpl implements CounsellorsService {
 
 
     @Override
-    public Boolean loginCounsellor(CounsellorDTO counsellorsDTO) throws Exception {
+    public Counsellor loginCounsellor(CounsellorDTO counsellorsDTO) throws Exception {
         try {
+            Counsellor counsellor = null;
             String email = counsellorsDTO.getEmail();
             String password = counsellorsDTO.getPassword();
-            Counsellor counsellor = counsellorsRepo.findByEmail(email);
+            counsellor = counsellorsRepo.findByEmail(email);
             if (!ObjectUtils.isEmpty(counsellor)) {
                 if (password.toLowerCase().equals(counsellor.getPassword().toLowerCase())) {
                     log.info("Successful login attempt for counsellor: {}", email);
-                    return true;
                 } else {
                     log.warn("Failed login attempt due to incorrect password for counsellor: {}", email);
-                    return false;
                 }
             } else {
                 log.warn("No counsellor found with email: {}", email);
-                return false;
             }
+            return counsellor;
         } catch (Exception e) {
             log.error("Error during login", e);
             throw new Exception("Login failed", e);
@@ -91,12 +90,7 @@ public class CounsellorServiceImpl implements CounsellorsService {
                 int openEnquiriesCount = countEnquiriesByStatus(enquiries, "OPEN");
                 int lostEnquiriesCount = countEnquiriesByStatus(enquiries, "LOST");
 
-                DashBoardResponseDTO dashboardResponse = DashBoardResponseDTO.builder()
-                        .totalEnquires(totalEnquiries)
-                        .openEnquires(openEnquiriesCount)
-                        .lostEnquires(lostEnquiriesCount)
-                        .enrolledEnquires(enrolledEnquiriesCount)
-                        .build();
+                DashBoardResponseDTO dashboardResponse = DashBoardResponseDTO.builder().totalEnquires(totalEnquiries).openEnquires(openEnquiriesCount).lostEnquires(lostEnquiriesCount).enrolledEnquires(enrolledEnquiriesCount).build();
 
                 log.info("Dashboard details fetched successfully for counselor ID: {}", counselorId);
                 return dashboardResponse;

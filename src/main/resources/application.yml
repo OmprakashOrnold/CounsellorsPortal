@@ -2,15 +2,13 @@ spring:
   application:
     name: CounsellorsPortal
   datasource:
-    url: jdbc:h2:mem:counsellors_portal;DB_CLOSE_DELAY=-1
-    username: sa
-    password:
-    driverClassName: org.h2.Driver
+    url: jdbc:mysql://9h6yd.h.filess.io:3307/mydatabase_slightcave
+    username: mydatabase_slightcave
+    password: 7b394eb1376df2e13e95eebea9012599ed58777f
   jpa:
     hibernate:
       ddl-auto: update
       show-sql: true
-      dialect: org.hibernate.dialect.H2Dialect
   main:
     banner-mode: off
 server:
