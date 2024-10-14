@@ -1,6 +1,6 @@
 package com.dsoft.portal.service.Impl;
 
-import com.dsoft.portal.dtos.CounsellorDTO;
+import com.dsoft.portal.dtos.CounsellorRequest;
 import com.dsoft.portal.dtos.DashBoardResponseDTO;
 import com.dsoft.portal.dtos.EnquireDTO;
 import com.dsoft.portal.entities.Counsellor;
@@ -29,17 +29,17 @@ public class CounsellorServiceImpl implements CounsellorsService {
     private final ModelMapper modelMapper;
 
     @Override
-    public Boolean registerCounsellor(CounsellorDTO counsellorDto) throws Exception {
+    public Boolean registerCounsellor(CounsellorRequest CounsellorRequest) throws Exception {
         boolean isRegistered = false;
         try {
-            validateRegistrationInput(counsellorDto);
+            validateRegistrationInput(CounsellorRequest);
 
-            if (counsellorsRepo.existsByEmail(counsellorDto.getEmail())) {
-                log.warn("Attempted registration with existing email: {}", counsellorDto.getEmail());
+            if (counsellorsRepo.existsByEmail(CounsellorRequest.getEmail())) {
+                log.warn("Attempted registration with existing email: {}", CounsellorRequest.getEmail());
                 throw new Exception("Email already exists");
             }
 
-            Counsellor counsellor = modelMapper.map(counsellorDto, Counsellor.class);
+            Counsellor counsellor = modelMapper.map(CounsellorRequest, Counsellor.class);
             Counsellor savedCounsellor = counsellorsRepo.save(counsellor);
 
             if (!ObjectUtils.isEmpty(savedCounsellor)) {
@@ -56,11 +56,11 @@ public class CounsellorServiceImpl implements CounsellorsService {
 
 
     @Override
-    public Counsellor loginCounsellor(CounsellorDTO counsellorsDTO) throws Exception {
+    public Counsellor loginCounsellor(CounsellorRequest counsellorRequest) throws Exception {
         try {
             Counsellor counsellor = null;
-            String email = counsellorsDTO.getEmail();
-            String password = counsellorsDTO.getPassword();
+            String email = counsellorRequest.getEmail();
+            String password = counsellorRequest.getPassword();
             counsellor = counsellorsRepo.findByEmail(email);
             if (!ObjectUtils.isEmpty(counsellor)) {
                 if (password.toLowerCase().equals(counsellor.getPassword().toLowerCase())) {
@@ -109,7 +109,7 @@ public class CounsellorServiceImpl implements CounsellorsService {
     }
 
 
-    private void validateRegistrationInput(CounsellorDTO dto) {
+    private void validateRegistrationInput(CounsellorRequest dto) {
         if (dto == null || ObjectUtils.isEmpty(dto.getEmail()) || ObjectUtils.isEmpty(dto.getPassword())) {
             throw new IllegalArgumentException("Invalid input for registration");
         }
