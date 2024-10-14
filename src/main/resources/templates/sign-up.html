@@ -9,7 +9,7 @@
     <link rel="stylesheet" th:href="@{/css/login.css}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <title>Login</title>
+    <title>Sign Up </title>
 </head>
 <body>
 
@@ -19,22 +19,26 @@
             <div class="col-12 col-md-8 col-lg-6 col-xl-5">
                 <div class="card bg-dark text-white" style="border-radius: 1rem;">
                     <div class="card-body p-5 text-center">
-                        <form th:action="@{/login}" method="post" th:object="${loginForm}">
+                        <form th:action="@{/sign-up}" method="post" th:object="${signUpForm}">
                             <div class="mb-md-5 mt-md-4 pb-5">
-                                <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
-                                <p class="text-white-50 mb-5" >Please enter your login and password!</p>
+                                <h2 class="fw-bold mb-2 text-uppercase">Register</h2>
                                 <font style="color: red">
                                     <p th:text="${errorMessage}"></p>
                                 </font>
-                                <font style="color: green">
-                                    <p th:text="${registrationSuccessMessage}"></p>
-                                </font>
+                                <div data-mdb-input-init class="form-outline form-white mb-4">
+                                    <input type="name"
+                                           id="typeNameX"
+                                           class="form-control form-control-lg"
+                                           th:field="*{name}"/>
+                                    <label class="form-label" for="typeNameX">Name</label>
+                                    <span class="text-danger" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></span>
+                                </div>
                                 <div data-mdb-input-init class="form-outline form-white mb-4">
                                     <input type="email"
                                            id="typeEmailX"
                                            class="form-control form-control-lg"
                                            th:field="*{email}"/>
-                                    <label class="form-label" for="typeEmailX" th:text="${emailLabel}">Email</label>
+                                    <label class="form-label" for="typeEmailX">Email</label>
                                     <span class="text-danger" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
                                 </div>
                                 <div data-mdb-input-init class="form-outline form-white mb-4">
@@ -42,17 +46,24 @@
                                            id="typePasswordX"
                                            class="form-control form-control-lg"
                                            th:field="*{password}"/>
-                                    <label class="form-label" for="typePasswordX" th:text="${passwordLabel}">Password</label>
+                                    <label class="form-label" for="typePasswordX">Password</label>
                                     <span class="text-danger" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
                                 </div>
+                                <div data-mdb-input-init class="form-outline form-white mb-4">
+                                    <input type="phoneNumber"
+                                           id="typePhoneNumberX"
+                                           class="form-control form-control-lg"
+                                           th:field="*{phNo}"/>
+                                    <label class="form-label" for="typePhoneNumberX">Phone Number</label>
+                                    <span class="text-danger" th:if="${#fields.hasErrors('phNo')}" th:errors="*{phNo}"></span>
+                                </div>
                                 <button data-mdb-button-init data-mdb-ripple-init
-                                        class="btn btn-outline-light btn-lg px-5" type="submit">Login
+                                        class="btn btn-outline-light btn-lg px-5" type="submit">Register
                                 </button>
                             </div>
                         </form>
                         <div>
-                            <p class="mb-0">Don't have an account? <a th:href="@{sign-up}" class="text-white-50 fw-bold">Sign
-                                Up</a>
+                            <p class="mb-0">If already registered login here <a th:href="@{login}" class="text-white-50 fw-bold">Login</a>
                             </p>
                         </div>
                     </div>
